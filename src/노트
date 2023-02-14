@@ -1,0 +1,37 @@
+## 84번
+- css inline 스타일(style={{}}이런식으로 주는거)은 최우선적으로 바꾸기 때문에 기본 css를 덮어버린다. => 선호x
+- button이 클릭될 때 아무것도 는데 클릭하면 동적으로 바꾸고 싶다.
+=> useState로 true/ false를 만들어서 인풋에 삼항 연산자를 사용
+- 다시 초기화 하고싶다면 텍스트를 입력받는 함수에 true로 바꾸어준다. event.target.value 길이를 구해서
+- 공백을 알 수 있는 메소드 .trim()
+
+## 85번 동적으로 css클래스 설정하기
+- 84번에서는 inline스타일로 동적으로 했다면 85번 강의에서는
+- css에 class를 한개더 정의해주고
+- 클래스가 들어가는 엘리먼트에 className={`form-control ${!isValid ? "invalid" : ""}`}
+이런식으로 정해준다. 그러면 똑같이 참이면 className이 뒤에 추가되고 거짓이면 원래대로 
+css스타일이 적용된다.
+
+## 86번 스타일드 컴포넌트(styled components)
+- 리액트 css는 전역적으로 css셀렉터 곧 클래스네임이나 아이디가 같다면 중복적으로 영향을 끼치게 된다
+- 같은 이름으로 두개를 하게되면 문제가 생길 수 있다.
+-해결법 두가지가 있따.
+ 1. styled components 패키지가 있다 다운을 받아 사용(홈페이지 들어가야함)
+ - 스타일이 첨부되는 컴포넌트에만 영향이가고 다른 컴포넌트에는 영향이 가지 않는다.
+- npm install --save styled-components 패키지 설치 명령어
+import styled form 'styled-components'; 하고
+const 컴포넌트이름 = styled.메소드``; 이렇게 사용된다. 
+;이것을 태그드 템플릿 리터럴이라고 부른다. 기본js 문법이다.(처음본다...)
+-  ``(백틱)사이에 css스타일을 넣게 되는데 button이라고 과정을 하면 백틱사이에 className을 정해줄 곳이 없기때문에
+Button컴포넌트에 직접 들어갈 css는 중괄호 없이 그냥 쓰고 => button컴포넌트에 들어갈 다른 css들은 &을통해 버튼에 이게 있다면
+스타일을 넣어줘라는 뜻이다.
+ 
+
+git log --oneline 커밋 이력확인
+git reset --mixed HEAD^ 커밋 취소 
+(--mixed: 기본
+    --soft: 커밋한 이전으로 돌림 add는 유지 
+--hard : 커밋을 되돌리면서 파일도 되돌림.(위험 쓰지말자)
+HEAD^: 지금 바라보고있는 현재커밋 바로이전/~1과 같음
+HEAD~1: 1이면 현재커밋 바로이전 2이면 전전
+)
