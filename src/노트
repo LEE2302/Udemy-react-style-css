@@ -1,6 +1,6 @@
-## 84번
+## 84번 동적 인라인 스타일 설정하기
 - css inline 스타일(style={{}}이런식으로 주는거)은 최우선적으로 바꾸기 때문에 기본 css를 덮어버린다. => 선호x
-- button이 클릭될 때 아무것도 는데 클릭하면 동적으로 바꾸고 싶다.
+- button이 클릭될 때 아무것도 없는데 클릭하면 동적으로 바꾸고 싶다.
 => useState로 true/ false를 만들어서 인풋에 삼항 연산자를 사용
 - 다시 초기화 하고싶다면 텍스트를 입력받는 함수에 true로 바꾸어준다. event.target.value 길이를 구해서
 - 공백을 알 수 있는 메소드 .trim()
@@ -26,12 +26,41 @@ const 컴포넌트이름 = styled.메소드``; 이렇게 사용된다.
 Button컴포넌트에 직접 들어갈 css는 중괄호 없이 그냥 쓰고 => button컴포넌트에 들어갈 다른 css들은 &을통해 버튼에 이게 있다면
 스타일을 넣어줘라는 뜻이다.
  
+## 87번 Styled Components & 동적 Props
+-'!조건' 이라면 true면 false 이고, false면 true이다.
+- 컴포넌트에 props를 전달하여 동적으로 변환이 가능하다.
+ styled-components는 백틱``에 값을 넣어준다. 그렇다면 템플릿 리터럴 문법으로 ${} 동적으로 변수를 넣어줄 수 있다.
+ 예) color: ${props=> props.프롭스명 ? 'red' : 'black'};
+    <Button 프롭스명={true/false값을 준다} />
+설명 : 만약 프롭스 값이 트루면 red를 컬러로 false면 black을 준다.
+    Button컴포넌트는 styled-components컴포넌트이기에 props 전달이 가능하다.
 
-git log --oneline 커밋 이력확인
-git reset --mixed HEAD^ 커밋 취소 
-(--mixed: 기본
-    --soft: 커밋한 이전으로 돌림 add는 유지 
---hard : 커밋을 되돌리면서 파일도 되돌림.(위험 쓰지말자)
-HEAD^: 지금 바라보고있는 현재커밋 바로이전/~1과 같음
-HEAD~1: 1이면 현재커밋 바로이전 2이면 전전
-)
+## 88번 Styled Components & 미디어 쿼리
+-미디어 쿼리는 모바일등 화면을 볼때 자동적으로 작아지거나 커지게하는 것을 말한다.
+방법 : @media (min-width: 768px) {
+    width:auto
+}
+-주의 그럼 전체적인 width값이 있어야한다.
+
+## 89번 CSS 모듈 사용하기
+-CSS 모듈은 리액트에서 기본으로 제공해준다.
+-CSS모듈은 style-components문법 말고 기본으로 컴포넌트와 CSS를 나눠서 관리 하고 싶을때 쓸 수 있고,
+CSS모듈을 사용하면 고유한 클래스명을 부여해준다.
+-css파일이름을 파일이름.module.css 로 지어주어야 한다.
+- 방법 : import styles from '파일주소.css'
+// css파일을 import해올때 원래는 파일주소만 적었지만 styles를 추가하여 받아줘야한다.
+그리고 className={styles.button}/ className-{style.['button']}식으로 클래스 네임을 style.기본이되는클래스명 을 적어주면 된다.
+
+## 90번 CSS 모듈을 사용한 동적 스타일
+-
+
+; ## 깃하는법 여러가지(상은님 캐리)
+; git log --oneline 커밋 이력확인
+; git reset --mixed HEAD^ 커밋 취소 
+; (--mixed: 기본
+;     --soft: 커밋한 이전으로 돌림 add는 유지 
+; --hard : 커밋을 되돌리면서 파일도 되돌림.(위험 쓰지말자)
+; HEAD^: 지금 바라보고있는 현재커밋 바로이전/~1과 같음
+; HEAD~1: 1이면 현재커밋 바로이전 2이면 전전
+; )
+; git push origin main -f : 혼자 쓸때만(상대방 몰래) 이미 커밋한거 삭제
